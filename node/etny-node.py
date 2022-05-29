@@ -169,13 +169,14 @@ class EtnyPoXNode:
 
     def add_dp_request(self):
         self.__nonce = self.__w3.eth.getTransactionCount(self.__address)
+        print(self.__cpu, self.__memory, self.__storage, self.__bandwidth, self.__duration, 0, self.__uuid, "", "")
         unicorn_txn = self.__etny.functions._addDPRequest(
             self.__cpu, self.__memory, self.__storage, self.__bandwidth, self.__duration, 0, self.__uuid, "", "",
             ""
         ).buildTransaction({
             'gas': 5000000,
             'chainId': 4,
-            'nonce': nonce,
+            'nonce': self.__nonce,
             'gasPrice': 2500000068,
         })
 
@@ -201,7 +202,7 @@ class EtnyPoXNode:
         unicorn_txn = self.__etny.functions._cancelDPRequest(req).buildTransaction({
             'gas': 5000000,
             'chainId': 4,
-            'nonce': nonce,
+            'nonce': self.__nonce,
             'gasPrice': 2500000068,
         })
 
@@ -369,10 +370,10 @@ class EtnyPoXNode:
         self.__nonce = self.__w3.eth.getTransactionCount(self.__address)
 
         unicorn_txn = self.__etny.functions._addProcessorToOrder(order, self.__resultaddress).buildTransaction({
-            'chainId': 8995,
-            'gas': 1000000,
+            'gas': 5000000,
+            'chainId': 4,
             'nonce': self.__nonce,
-            'gasPrice': self.__w3.toWei("1", "mwei"),
+            'gasPrice': 2500000068,
         })
 
         signed_txn = self.__w3.eth.account.sign_transaction(unicorn_txn, private_key=self.__acct.key)
@@ -435,10 +436,10 @@ class EtnyPoXNode:
         unicorn_txn = self.__etny.functions._placeOrder(
             int(doreq), int(self.__dprequest),
         ).buildTransaction({
-            'chainId': 8995,
-            'gas': 1000000,
+            'gas': 5000000,
+            'chainId': 4,
             'nonce': self.__nonce,
-            'gasPrice': self.__w3.toWei("1", "mwei"),
+            'gasPrice': 2500000068,
         })
 
         signed_txn = self.__w3.eth.account.sign_transaction(unicorn_txn, private_key=self.__acct.key)
@@ -469,6 +470,7 @@ if __name__ == '__main__':
     logger.info("Cleaning up previous DP requests...")
     while True:
         try:
+            print('cleanup')
             app.cleanup_dp_requests()
         except Exception as e:
             logger.error(e)
