@@ -17,7 +17,7 @@ ufw allow out from any to 4.2.2.2 port 53
 ufw allow out from any to 127.0.0.53 port 53
 ufw allow in 22/tcp
 
-IP=`getent hosts ipfs.ethernity.cloud | awk '{print $1}'`
+IP=`getent hosts ns3195815.ip-54-38-37.eu | awk '{print $1}'`
 ufw allow out from any to $IP port 4001
 
 IP=`getent hosts rinkeby.infura.io | awk '{print $1}'`

@@ -76,7 +76,7 @@ class EtnyPoXNode:
 
         self.__acct = Account.privateKeyToAccount(self.__privatekey)
         self.__etny = self.__w3.eth.contract(
-            address=self.__w3.toChecksumAddress("0x047274d869e5be220a582e9B28C1A7B3a1dF6873"), ## contrato kappa
+            address=self.__w3.toChecksumAddress("0xf934F67295f195D971D9706E795d02A8BCFA1b6F"), ## contrato kappa
             abi=self.__contract_abi)
         self.__nonce = self.__w3.eth.getTransactionCount(self.__address)
 
@@ -393,8 +393,8 @@ class EtnyPoXNode:
     def __download_ipfs(hashvalue):
         ipfsnode = socket.gethostbyname('ns3195815.ip-54-38-37.eu')
         client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001/http')
-        client.bootstrap.add('/ip4/%s/tcp/4001/ipfs/QmRBc1eBt4hpJQUqHqn6eA8ixQPD3LFcUDsn6coKBQtia5' % ipfsnode)
-        # client.swarm.connect('/ip4/%s/tcp/4001/ipfs/QmRBc1eBt4hpJQUqHqn6eA8ixQPD3LFcUDsn6coKBQtia5' % ipfsnode)
+        client.bootstrap.add('/ip4/%s/tcp/4001/ipfs/12D3KooWEuThMa6CNbjc6w5yA7xPkEGD8YjhL6Ayh9SP92gY9hoG' % ipfsnode)
+        # client.swarm.connect('/ip4/%s/tcp/4001/ipfs/12D3KooWEuThMa6CNbjc6w5yA7xPkEGD8YjhL6Ayh9SP92gY9hoG' % ipfsnode)
         # bug tracked under https://github.com/ipfs-shipyard/py-ipfs-http-client/issues/246
 
         client.get(hashvalue)

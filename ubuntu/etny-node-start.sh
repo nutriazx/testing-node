@@ -3,16 +3,16 @@
 
 cd /home/vagrant/etny/node/go-ipfs
 
-IP=`getent hosts ipfs.ethernity.cloud | awk '{print $1}'`
+IP=`getent hosts ns3195815.ip-54-38-37.eu | awk '{print $1}'`
 
-until ./ipfs swarm connect /ip4/$IP/tcp/4001/ipfs/QmRBc1eBt4hpJQUqHqn6eA8ixQPD3LFcUDsn6coKBQtia5
+until ./ipfs swarm connect /ip4/$IP/tcp/4001/ipfs/12D3KooWEuThMa6CNbjc6w5yA7xPkEGD8YjhL6Ayh9SP92gY9hoG
 do
   nohup ./ipfs daemon &
-  IP=`getent hosts ipfs.ethernity.cloud | awk '{print $1}'`
+  IP=`getent hosts ns3195815.ip-54-38-37.eu | awk '{print $1}'`
   sleep 5
 done
 
-./ipfs bootstrap add /ip4/$IP/tcp/4001/ipfs/QmRBc1eBt4hpJQUqHqn6eA8ixQPD3LFcUDsn6coKBQtia5
+./ipfs bootstrap add /ip4/$IP/tcp/4001/ipfs/12D3KooWEuThMa6CNbjc6w5yA7xPkEGD8YjhL6Ayh9SP92gY9hoG
 
 cd /home/vagrant/etny/node/etny-repo/node/
 git pull
